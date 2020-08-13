@@ -1,0 +1,5 @@
+{
+    "PORT": "5000",
+    "mongoURI": "mongodb+srv://Victor:6B5EPiyuFTaWxCw5@cluster0.b8scg.mongodb.net/chatmessanger>?retryWrites=true",
+    "jwtSecret": "secretWord"
+}
