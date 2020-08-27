@@ -3,20 +3,35 @@ import React from "react";
 import { JoinLoginPage } from "./join/login/page";
 import { JoinRegisterPage } from "./join/register/page";
 import { HomePage } from "./home/page";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { NotFoundPage } from "./not-found/page";
+import { CreateArticlePage } from "./create/page"
+import {
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
+import { useStore } from "effector-react";
+import { $session } from "../features/common/session";
 
 export const Routes = () => {
+  const session = useStore($session);
   return (
     <>
       <Switch>
         <Route path="/login">
-          <JoinLoginPage />
+          {session ? <Redirect to="/" /> : <JoinLoginPage />}
         </Route>
         <Route path="/register">
-          <JoinRegisterPage />
+          {session ? <Redirect to="/" /> : <JoinRegisterPage />}
         </Route>
-        <Route path="/">
+        <Route exact path="/">
           <HomePage />
+        </Route>
+        <Route path="/create">
+          <CreateArticlePage />
+        </Route>
+        <Route>
+          <NotFoundPage />
         </Route>
       </Switch>
     </>

@@ -1,12 +1,12 @@
 import * as React from "react";
 import {
   Container,
-  CenterContentTemplate,
   H2,
   Input,
   Link,
   Card,
   Button,
+  MainTemplate,
 } from "../../../ui";
 import { useStore } from "effector-react";
 import {
@@ -15,18 +15,30 @@ import {
   $password,
   passwordChanged,
   formSubmitted,
+  formUnmounted
 } from "./model";
+import { Col } from "../../../lib/styled-components-layout";
+import { Header } from "../../../features/common/header";
 
 export const JoinRegisterPage = () => {
+
+  React.useEffect(() => {
+    return formUnmounted
+  }, [])
+
   return (
-    <CenterContentTemplate>
-      <Container>
-        <Card>
-          <RegisterForm />
-          <Link margin="10px 0 -10px 0" to="/login">Already have account?</Link>
-        </Card>
+    <MainTemplate header={<Header/>}>
+      <Container justify="center" align="center" >
+        <Col margin="200px 0" width="420px">
+          <Card>
+            <RegisterForm />
+            <Link margin="10px 0 -10px 0" to="/login">
+              Already have account?
+            </Link>
+          </Card>
+        </Col>
       </Container>
-    </CenterContentTemplate>
+    </MainTemplate>
   );
 };
 
@@ -41,7 +53,9 @@ const RegisterForm = () => {
       <H2>Registration</H2>
       <Email />
       <Password />
-      <Button type="submit" width="100%">Register</Button>
+      <Button type="submit" width="100%">
+        Register
+      </Button>
     </form>
   );
 };

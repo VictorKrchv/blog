@@ -24,6 +24,12 @@ const $form = createStoreObject({
 });
 
 export const formSubmitted = createEvent();
+export const formUnmounted = createEvent()
+
+$password.reset(formUnmounted)
+$email.reset(formUnmounted)
+
+
 
 formSubmitted.watch(() => {
   const form = $form.getState();

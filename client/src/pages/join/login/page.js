@@ -1,13 +1,13 @@
 import * as React from "react";
 import { useStore } from "effector-react";
 import {
-  CenterContentTemplate,
   Container,
   Card,
   Button,
   Input,
   H2,
   Link,
+  MainTemplate,
 } from "../../../ui";
 import {
   $email,
@@ -15,18 +15,29 @@ import {
   $password,
   passwordChanged,
   formSubmitted,
+  formUnmounted
 } from "./model";
+import { Col } from "../../../lib/styled-components-layout";
+import { Header } from "../../../features/common/header";
 
 export const JoinLoginPage = () => {
+  React.useEffect(() => {
+    return formUnmounted;
+  }, []);
+
   return (
-    <CenterContentTemplate>
-      <Container>
-        <Card>
-          <LoginForm />
-          <Link margin="10px 0 -10px 0" to="/register">Dont have account?</Link>
-        </Card>
+    <MainTemplate header={<Header />}>
+      <Container justify="center" align="center">
+        <Col margin="200px 0" width="420px" align="stretch">
+          <Card>
+            <LoginForm />
+            <Link margin="10px 0 -10px 0" to="/register">
+              Dont have account?
+            </Link>
+          </Card>
+        </Col>
       </Container>
-    </CenterContentTemplate>
+    </MainTemplate>
   );
 };
 

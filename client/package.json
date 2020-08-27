@@ -9,8 +9,11 @@
     "axios": "^0.19.2",
     "effector": "^21.2.2",
     "effector-react": "^21.0.4",
+    "history": "^5.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-router": "^5.2.0",
+    "react-router-config": "^5.1.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "styled-components": "^5.1.1"

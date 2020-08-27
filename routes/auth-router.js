@@ -4,13 +4,14 @@ const router = Router();
 const config = require("config");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-
+const checkToken = require('../middlewares/checkToken')
 //api/auth/me
 
-router.get("/me", async (req, res) => {
+router.get("/me", checkToken, async (req, res) => {
   console.log("/me");
   try {
     const user = await User.findOne({ _id: req.user.userId });
+    res.json({userId: user._id, email: user.email})
   } catch (error) {
     console.log(error);
     res.status(400).json({ message: "Что-то пошло не так" });

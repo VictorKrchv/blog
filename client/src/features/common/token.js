@@ -5,5 +5,11 @@ export const tokenDropped = createEvent()
 
 export const $token = createStore(localStorage.getItem('token'))
 
-$token.on(tokenChanged, (_, token) => token)
-$token.on(tokenDropped, () => null)
+$token.on(tokenChanged, (_, token) => {
+    localStorage.setItem('token', token)
+    return token
+})
+$token.on(tokenDropped, () => {
+    localStorage.removeItem('token')
+    return null
+})

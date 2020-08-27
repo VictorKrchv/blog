@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import styled from "styled-components";
 
 export const Input = ({
@@ -27,6 +26,7 @@ export const Input = ({
 );
 
 const InputNative = styled.input`
+  width: 100%;
   border: 1px solid #751a2c;
   margin: ${props => props.margin ? props.margin : '0'};
   border-radius: 4px;

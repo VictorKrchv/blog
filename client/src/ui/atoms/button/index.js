@@ -3,8 +3,8 @@ import styled from "styled-components";
 export const Button = styled.button`
   border-radius: 10px;
   border: 2px solid #b33a3a;
-  color: #FAD4CD;
-  width: 100%;
+  color: white;
+  width: ${(props) => props.width ? props.width : "100%"};
   background-color: #b33a3a;
   cursor: pointer;
   font-size: 24px;
