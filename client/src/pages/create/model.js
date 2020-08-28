@@ -21,10 +21,14 @@ const $form = createStoreObject({
   content: $content,
 });
 
+export const pageUnmounted = createEvent();
+$title.reset(pageUnmounted);
+$content.reset(pageUnmounted);
+
 export const formSubmitted = createEvent();
 
 formSubmitted.watch(() => {
-  createArticle($form.getState())
+  createArticle($form.getState());
 });
 
 const createArticle = createEffect();
@@ -32,4 +36,8 @@ createArticle.use((data) => {
   return articlesApi.create(data);
 });
 
-
+export const $redirect = createStore(null);
+$redirect.on(createArticle.doneData, (_, response) => {
+  return `/${response.data.article._id}`
+});
+$redirect.reset(pageUnmounted)

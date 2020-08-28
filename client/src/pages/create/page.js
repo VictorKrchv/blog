@@ -1,19 +1,29 @@
 import * as React from "react";
 import { H2, Button } from "../../ui";
 import { TitleInput } from "../../features/articles/atoms/title-input";
-import styled from "styled-components";
 import { ArticlesCommonTemplate } from "../../features/articles/templates/common";
 import { ContentInput } from "../../features/articles/atoms/textarea";
 import { useStore } from "effector-react";
-import { $title, contentChanged, $content, titleChanged, formSubmitted } from "./model";
+import { $title, contentChanged, $content, titleChanged, formSubmitted, pageUnmounted, $redirect } from "./model";
+import { useHistory, Redirect } from "react-router";
 
 export const CreateArticlePage = () => {
+
 
   const handleSubmit = (e) => {
     e.preventDefault()
     formSubmitted()
   }
 
+  React.useEffect(() => {
+    return pageUnmounted
+  }, [])
+
+  const redirectURL = useStore($redirect)
+
+  if (redirectURL) {
+    return <Redirect to={redirectURL}/>
+  }
 
   return (
     <ArticlesCommonTemplate sidebar={<SideBar />}>
@@ -48,6 +58,7 @@ const Content = () => {
       label="Content"
       placeholder="Write your content here"
       onChange={contentChanged}
+      value={content}
     />
   );
 };

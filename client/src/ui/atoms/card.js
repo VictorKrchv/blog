@@ -1,6 +1,8 @@
-import styled from "styled-components"
+import styled from "styled-components";
+import { mixins } from "../../lib/styled-components-layout";
 
 export const Card = styled.div`
+  ${mixins}
   width: auto;
   display: flex;
   flex-flow: column;
@@ -11,4 +13,4 @@ export const Card = styled.div`
 
   background-color: white;
   color: black;
-`
+`;

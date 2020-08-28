@@ -12,6 +12,7 @@ import {
 } from "react-router-dom";
 import { useStore } from "effector-react";
 import { $session } from "../features/common/session";
+import { ArticlePage } from "./article/page";
 
 export const Routes = () => {
   const session = useStore($session);
@@ -26,6 +27,9 @@ export const Routes = () => {
         </Route>
         <Route exact path="/">
           <HomePage />
+        </Route>
+        <Route path="/article/:id">
+          <ArticlePage/>
         </Route>
         <Route path="/create">
           <CreateArticlePage />
