@@ -17,7 +17,7 @@ export const Articles = ({ articles }) => {
   );
 };
 
-const Article = ({ title, content, id }) => {
+export const Article = ({ title, content, id }) => {
   return (
     <Card margin="0 0 10px 0">
       <H2 margin="0 0 10px 0">

@@ -3,7 +3,6 @@ import {defaultColors} from "./pages/themes/default"
 
 
 export const GlobalStyles = createGlobalStyle`
-    
     * {
         margin: 0;
         padding: 0;

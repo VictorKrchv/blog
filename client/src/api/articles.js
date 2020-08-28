@@ -22,7 +22,12 @@ const getLatest = () => {
   return instance.get('/api/articles/')
 }
 
+const getById = (id) => {
+  return instance.get(`/api/articles/${id}`)
+} 
+
 export const articlesApi = {
     create,
-    getLatest
+    getLatest,
+    getById
 };

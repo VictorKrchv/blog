@@ -15,7 +15,6 @@ export const SideBarTemplate = ({ sidebar, children, footer }) => {
 };
 
 const SidebarContainer = styled.div`
-  text-align: center;
   height: 100%;
   display: flex;
   padding: 20px 0;

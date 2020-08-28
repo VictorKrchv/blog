@@ -32,9 +32,7 @@ router.get("/", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
   try {
-    const article = await (
-      await Article.findOne({ _id: req.params.id })
-    ).populate("author", "email");
+    const article = await Article.findOne({ _id: req.params.id }).populate("author", "email");
     if (!article) return res.status(400).json({ message: "Wrong" });
     res.status(200).json({ article });
   } catch (e) {
