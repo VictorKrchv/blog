@@ -4,25 +4,31 @@ import { TitleInput } from "../../features/articles/atoms/title-input";
 import { ArticlesCommonTemplate } from "../../features/articles/templates/common";
 import { ContentInput } from "../../features/articles/atoms/textarea";
 import { useStore } from "effector-react";
-import { $title, contentChanged, $content, titleChanged, formSubmitted, pageUnmounted, $redirect } from "./model";
-import { useHistory, Redirect } from "react-router";
+import {
+  $title,
+  contentChanged,
+  $content,
+  titleChanged,
+  formSubmitted,
+  pageUnmounted,
+  $redirect,
+} from "./model";
+import { Redirect } from "react-router";
 
 export const CreateArticlePage = () => {
-
-
   const handleSubmit = (e) => {
-    e.preventDefault()
-    formSubmitted()
-  }
+    e.preventDefault();
+    formSubmitted();
+  };
 
   React.useEffect(() => {
-    return pageUnmounted
-  }, [])
+    return pageUnmounted;
+  }, []);
 
-  const redirectURL = useStore($redirect)
+  const redirectURL = useStore($redirect);
 
   if (redirectURL) {
-    return <Redirect to={redirectURL}/>
+    return <Redirect to={redirectURL} />;
   }
 
   return (
@@ -31,7 +37,9 @@ export const CreateArticlePage = () => {
       <form onSubmit={handleSubmit}>
         <Title />
         <Content />
-        <Button type="submit" width="160px">Create</Button>
+        <Button type="submit" width="160px">
+          Create
+        </Button>
       </form>
     </ArticlesCommonTemplate>
   );

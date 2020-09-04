@@ -1,5 +1,4 @@
 import axios from "axios";
-import { func } from "prop-types";
 
 const token = localStorage.getItem("token");
 
@@ -14,9 +13,15 @@ const withToken = axios.create({
   },
 });
 
+
 const create = (data) => {
     return withToken.post('/api/articles/create', data)
 }
+
+const deleteData = (id) => {
+  return withToken.delete(`/api/articles/delete/${id}`)
+}
+
 
 const getLatest = () => {
   return instance.get('/api/articles/')
@@ -28,6 +33,7 @@ const getById = (id) => {
 
 export const articlesApi = {
     create,
+    deleteData,
     getLatest,
     getById
 };

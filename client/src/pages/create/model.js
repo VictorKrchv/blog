@@ -38,6 +38,6 @@ createArticle.use((data) => {
 
 export const $redirect = createStore(null);
 $redirect.on(createArticle.doneData, (_, response) => {
-  return `/article/${response.data.article._id}`
+  return `/article/${response.data.article._id}`;
 });
-$redirect.reset(pageUnmounted)
+$redirect.reset(pageUnmounted);

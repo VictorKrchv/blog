@@ -5,3 +5,4 @@ export { H2 } from "./heading";
 export { Link } from "./link";
 export { FooterContent } from "./footer-content";
 export { Typography } from "./typography";
+export {RemoveIcon} from "./remove-icon"

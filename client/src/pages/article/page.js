@@ -1,32 +1,41 @@
 import * as React from "react";
-import { useParams } from "react-router";
+import { useParams, Redirect } from "react-router";
 import { ArticlesCommonTemplate } from "../../features/articles/templates/common";
-import { H2, Typography } from "../../ui";
-import { getArticle, $article, pageUnmounted } from "./model";
+import { H2, Typography, Button, RemoveIcon } from "../../ui";
+import { getArticle, $article, pageUnmounted, deleteArticle, $redirect } from "./model";
 import { useStore } from "effector-react";
 import { Preloader } from "../../ui/atoms/preloader";
+import styled from "styled-components";
 
 export const ArticlePage = () => {
   const id = useParams().id;
 
   React.useEffect(() => {
     getArticle(id);
-    return pageUnmounted
+    return pageUnmounted;
   }, []);
 
   const article = useStore($article);
+  
+  const redirectURL = useStore($redirect)
+  if (redirectURL) {
+    return <Redirect to={redirectURL} />;
+  }
 
   if (!article) {
     return (
       <ArticlesCommonTemplate>
-          <Preloader/>
+        <Preloader />
       </ArticlesCommonTemplate>
     );
   }
 
   return (
     <ArticlesCommonTemplate>
-      <H2 margin="0 0 10px 0">{article.title}</H2>
+      <ArticleHeader>
+        <H2>{article.title}</H2>
+        <RemoveIcon handleClick={deleteArticle} />
+      </ArticleHeader>
       <Typography margin="0 0 10px 0">{article.content}</Typography>
       <hr />
       <i>
@@ -35,3 +44,9 @@ export const ArticlePage = () => {
     </ArticlesCommonTemplate>
   );
 };
+
+const ArticleHeader = styled.div`
+  margin: 10px 0;
+  display: flex;
+  justify-content: space-between;
+`;
