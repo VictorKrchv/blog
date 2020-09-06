@@ -2,5 +2,5 @@ import React from "react";
 import preloader from "../../assets/preloader.svg";
 
 export const Preloader = () => {
-  return <img src={preloader} />;
+  return <img alt="load" src={preloader} />;
 };

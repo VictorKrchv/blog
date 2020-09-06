@@ -1,26 +1,25 @@
 import * as React from "react";
-import { H2, Card } from "../../ui";
+import { H2 } from "../../ui";
 import { Row, Col } from "../../lib/styled-components-layout";
 import styled from "styled-components";
 import { HomeCommonTemplate } from "../../features/home/templates/common";
-import {getArticles, $articles} from "./model"
+import { getArticles, $articles } from "./model";
 import { useStore } from "effector-react";
 import { Articles } from "../../features/organism/articles";
 
 export const HomePage = () => {
-
   React.useEffect(() => {
-    getArticles()
-  }, [])
-  
-  const articles = useStore($articles)
+    getArticles();
+  }, []);
+
+  const articles = useStore($articles);
 
   return (
     <HomeCommonTemplate sidebar={<Sidebar />}>
       <MainTitle>
         <H2>V-TEME</H2>
       </MainTitle>
-      <Articles articles={articles}/>
+      <Articles articles={articles} />
     </HomeCommonTemplate>
   );
 };

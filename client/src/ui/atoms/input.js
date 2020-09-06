@@ -12,24 +12,28 @@ export const Input = ({
   type,
   onChange,
 }) => (
-  <div>
+  <>
+    {error ? <ErrorMessage>{error}</ErrorMessage> : null}
     <InputNative
-    margin={margin}
-    label={label}
-    name={name}
-    value={value}
-    onChange={onChange}
-    placeholder={placeholder}
-    type={type}
+      error={error ? error : null}
+      margin={margin}
+      label={label}
+      name={name}
+      value={value}
+      onChange={onChange}
+      placeholder={placeholder}
+      type={type}
     />
-  </div>
+  </>
 );
 
 const InputNative = styled.input`
   width: 100%;
-  border: 1px solid #751a2c;
-  margin: ${props => props.margin ? props.margin : '0'};
-  border-radius: 4px;
+  border: none;
+  border-bottom: 1px solid;
+  border-color: ${(props) =>
+    props.error === null ? "var(--transparent-blue)" : "#f44336"};
+  margin: ${(props) => (props.margin ? props.margin : "0")};
   position: relative;
   padding: 12px 24px;
   font-size: 16px;
@@ -38,4 +42,12 @@ const InputNative = styled.input`
   box-shadow: none;
   background-color: none;
   transition: box-shadow 120ms, border-color 120ms;
+
+  &:focus {
+    border-color: var(--blue);
+  }
+`;
+
+const ErrorMessage = styled.div`
+  color: #f44336;
 `;

@@ -10,11 +10,11 @@ export const TitleInputNative = styled.input`
   outline: none;
   box-shadow: none;
   border: 1px solid black;
+  border-radius: 5px;
   font-size: 24px;
   margin-bottom: 1rem;
   color: var(--card-text);
   background-color: var(--card);
-  border-color: var(--borders);
 `;
 
 const Label = styled.label``;

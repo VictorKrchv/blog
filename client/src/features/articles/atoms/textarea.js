@@ -17,15 +17,18 @@ export const InputNative = styled.textarea`
   padding: 3px 15px;
   box-sizing: border-box;
   background-color: inherit;
-  color: currentColor;
   outline: none;
   box-shadow: none;
   border: 1px solid black;
+  border-radius: 5px;
   font-size: 24px;
   margin-bottom: 1rem;
   color: var(--card-text);
   background-color: var(--card);
   border-color: var(--borders);
+
+  &:focus {
+  }
 `;
 
 export const ContentInput = ({

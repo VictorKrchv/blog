@@ -1,56 +1,26 @@
 import { registerUser } from "../../../api/sessions";
 import {
   createEvent,
-  createStore,
-  createStoreObject,
   createEffect,
+  createStore,
 } from "effector";
+import { setSession } from "../../../features/common/session";
+import { tokenChanged } from "../../../features/common/token";
 
-export const emailChanged = createEvent();
-export const $email = createStore("").on(
-  emailChanged,
-  (_, e) => e.target.value
-);
-
-export const passwordChanged = createEvent();
-export const $password = createStore("").on(
-  passwordChanged,
-  (_, e) => e.target.value
-);
-
-const $form = createStoreObject({
-  email: $email,
-  password: $password,
-});
 
 export const formSubmitted = createEvent();
-export const formUnmounted = createEvent()
+export const $errorMessage = createStore(null)
 
-$password.reset(formUnmounted)
-$email.reset(formUnmounted)
+formSubmitted.watch((form) => registerUserData({ ...form }));
+const registerUserData = createEffect()
+registerUserData.use((registerData) => registerUser(registerData))
 
-
-
-formSubmitted.watch(() => {
-  const form = $form.getState();
-  registerUserData({ ...form });
-});
-
-const registerUserData = createEffect({
-  async handler(registerData) {
-    try {
-      const response = await registerUser(registerData);
-      return response;
-    } catch (e) {
-      return e;
-    }
-  },
-});
 
 registerUserData.doneData.watch((response) => {
-  console.log(response, "donedata");
+  
 });
 
-registerUserData.failData.watch(({ response }) => {
-  console.log(response, "failData");
-});
+$errorMessage.on(registerUserData.failData, (_, res) => res.response.data.message)
+
+export const clearError = createEvent()
+$errorMessage.reset(clearError)

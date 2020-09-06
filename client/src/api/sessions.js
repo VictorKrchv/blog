@@ -1,6 +1,7 @@
 import axios from "axios";
+import {$token} from "../features/common/token"
 
-const token = localStorage.getItem("token");
+
 
 const instance = axios.create({
   baseURL: "http://localhost:3000",
@@ -9,7 +10,7 @@ const instance = axios.create({
 const withToken = axios.create({
   baseURL: "http://localhost:3000",
   headers: {
-    Authorization: "Bearer " + token,
+    Authorization: "Bearer " + $token.getState(),
   },
 });
 

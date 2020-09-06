@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useParams, Redirect } from "react-router";
 import { ArticlesCommonTemplate } from "../../features/articles/templates/common";
-import { H2, Typography, Button, RemoveIcon } from "../../ui";
+import { H2, Typography, RemoveIcon } from "../../ui";
 import { getArticle, $article, pageUnmounted, deleteArticle, $redirect } from "./model";
 import { useStore } from "effector-react";
 import { Preloader } from "../../ui/atoms/preloader";
@@ -13,7 +13,7 @@ export const ArticlePage = () => {
   React.useEffect(() => {
     getArticle(id);
     return pageUnmounted;
-  }, []);
+  }, [id]);
 
   const article = useStore($article);
   

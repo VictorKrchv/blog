@@ -66,5 +66,5 @@ const HeaderBox = styled.header`
   box-sizing: border-box;
   box-shadow: 0 -1rem 4rem rgba(36, 37, 38, 0.3);
   color: var(--primary-text);
-  background-color: var(--red);
+  background-color: var(--blue);
 `;

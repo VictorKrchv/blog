@@ -1,6 +1,5 @@
 import { useStore } from "effector-react"
 import { useEffect } from "react"
-import { createStore } from "effector"
 import { $token } from "./token"
 import { $session, loadSession } from "./session"
 
